@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
-from .store.abstract.base.timestamps import TimestampModel
+from store.abstract.base.timestamps import TimestampModel
 
 
 class Category(MPTTModel):
@@ -42,7 +42,9 @@ class Category(MPTTModel):
 
 class ProductType(models.Model):
     name = models.CharField(
-        verbose_name=_('Product Type'), help_text=_("Required"), max_length=255
+        verbose_name=_('Product Type'),
+        help_text=_("Required"),
+        max_length=255
     )
     is_active = models.BooleanField(default=True)
 
@@ -107,7 +109,7 @@ class Product(TimestampModel):
         max_digits=5,
         decimal_places=2,
     )
-    discount_pri ce = models.DecimalField(
+    discount_price = models.DecimalField(
         verbose_name=_('Discounted Price'),
         help_text=_("Maximum 999.99"),
         error_messages={
@@ -117,23 +119,17 @@ class Product(TimestampModel):
         },
         max_digits=5,
         decimal_places=2,
-        is_active=models.BooleanField(
-            default=True,
-            help_text=_("Change product visibility"),
-            verbose_name=_("Product visibility"),
-        )
+    )
+    is_active = models.BooleanField(
+        default=True,
+        help_text=_("Change product visibility"),
+        verbose_name=_("Product visibility"),
     )
 
     class Meta:
         ordering = ["-created_at"]
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
-
-
-class ProductSpecification(models.Model):
-    product = models.ForeignKey(
-        Product,
-    )
 
 
 class ProductSpecificationValue(models.Model):
@@ -150,6 +146,7 @@ class ProductSpecificationValue(models.Model):
         on_delete=models.CASCADE,
     )
     value = models.CharField(
+        verbose_name=_('Value'),
         max_length=255,
         help_text=_("Product Specification Value (maximum of 255 words)"),
     )
@@ -182,7 +179,6 @@ class ProductImage(TimestampModel):
     )
     alt_text = models.CharField(
         verbose_name=_('Alt Text'),
-        help_text
         max_length=255,
         blank=True,
         null=True

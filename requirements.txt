@@ -1,4 +1,9 @@
 Django==4.2.6
+django-mptt
 autopep8
 jedi
 pylint
+pillow
+boto3
+django-storages
+python-dotenv
