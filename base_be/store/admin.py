@@ -2,8 +2,11 @@ from django.contrib import admin
 
 from mptt.admin import MPTTModelAdmin
 
-from .models.store import (
+from .models.category import (
     Category,
+)
+
+from .models.product import (
     Product,
     ProductImage,
     ProductSpecification,

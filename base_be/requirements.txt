@@ -7,3 +7,6 @@ pillow
 boto3
 django-storages
 python-dotenv
+djangorestframework
+markdown
+django-filter

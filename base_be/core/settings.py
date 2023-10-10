@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "store",
-    "mptt"
+    "mptt",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
@@ -112,3 +113,9 @@ AWS_DEFAULT_ACL = None
 AWS_S3_VERITY = True
 AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = 'public-read'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
